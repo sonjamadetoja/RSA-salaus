@@ -9,4 +9,4 @@ class TestKeyCreationMachine(unittest.TestCase):
         random_bit_number = self.KCM.generate_random_bits(1024)
         l = len(bin(random_bit_number))-2
 
-        self.assertEqual(l, 1024)
+        self.assertEqual(0, 1024)
