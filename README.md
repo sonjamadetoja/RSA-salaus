@@ -1,5 +1,5 @@
 # RSA-salaus
-https://github.com/sonjamadetoja/RSA-salaus/workflows/CI/badge.svg
+![GitHub Actions]8https://github.com/sonjamadetoja/RSA-salaus/workflows/CI/badge.svg)
 
 Tämä ohjelma tuottaa salausavaimia ja käyttää annettuja avaimia viestin salaamiseen ja salauksen purkamiseen. Kyseessä on harjoitustyö tietojenkäsittelytieteen kandiohjelmaan. Ohjelmointikielenä käytetään pythonia.
 
