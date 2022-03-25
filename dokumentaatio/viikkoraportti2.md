@@ -2,13 +2,13 @@
 
 ## Mitä olen tehnyt?
 
-Olen alustanut poetry-ympäristön ja ottanut siihen käyttöön pytestin, coveragen ja pylintin. Lisäksi olen aloittanut jatkuvan integraation ottamalla käyttään GitHub Actionsin. Testikattavuuden avuksi olen ottanut käyttöön Codecovin ja oodin kommentoimiseen Docstringin.
+Olen alustanut Poetry-ympäristön ja ottanut siihen käyttöön Pytestin, Coveragen ja Pylintin. Lisäksi olen aloittanut jatkuvan integraation ottamalla käyttöön GitHub Actionsin. Testikattavuuden seuraamiseksi olen ottanut käyttöön Codecovin ja koodin kommentoimiseen Docstringin.
 
-Olen pohtinut ohjelman rakennetta ja päätynyt siihen, että minulla on omat luokat salausavaimelle ja salausavaimenluomistoiminnoille. Myöhemmin, kun toteutan salaamis- ja purkamistoiminnot, teen niille oman luokan. En ole vielä päättänyt ovatko ne samassa luokassa vai erikseen. Myös käyttöliittymätoiminnoille täytynee tehdä oma luokka, kun se tulee ajankohtaiseksi.
+Olen pohtinut ohjelman rakennetta ja päätynyt siihen, että minulla on omat luokat salausavainparille ja salausavaimenluomistoiminnoille. Myöhemmin, kun toteutan salaamis- ja purkamistoiminnot, teen niille oman luokan. En ole vielä päättänyt ovatko ne samassa luokassa vai erikseen. Myös käyttöliittymätoiminnoille täytynee tehdä oma luokka, kun se tulee ajankohtaiseksi.
 
 Olen lukenut Miller-Rabin metodista, satunnaislukujen generoinnista ja modulaariaritmetiikasta.
 
-Olen ohjelmoinut funktion riittävän suurien satunnaislukujen luomista varten sekä testin kyseiselle funktiolle. Lisäksi olen aloittanut ohjelmoimaan Miller-Rabiniin perustuvaa funktiota, joka testaa, onko luku alkuluku. Minulla on siitä jo yksi versio olemassa, mutta se ei vielä toimi oikein. Lisäksi olen tehnyt funktion, joka käyttää näitä kahta funktiota alkuluvun luomiseen.
+Olen luonut avaimenluomistoiminnoille luokan ja ohjelmoinut sinne funktion riittävän suurien satunnaislukujen luomista varten sekä testin kyseiselle funktiolle. Lisäksi olen aloittanut ohjelmoimaan Miller-Rabiniin perustuvaa funktiota, joka testaa, onko luku alkuluku. Minulla on siitä jo yksi versio olemassa, mutta se ei vielä toimi oikein. Lisäksi olen tehnyt funktion, joka käyttää näitä kahta funktiota alkuluvun luomiseen. Olen myös luonut avainpari-luokan.
 
 ## Mitä olen oppinut?
 
