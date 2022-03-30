@@ -17,7 +17,8 @@ class KeyCreationMachine:
         Returns:
             int: satunnaisluku
         """
-        return random.randrange(2**(length-1)+1, 2**length-1)
+        ticket = random.SystemRandom()
+        return ticket.randrange(2**(length-1)+1, 2**length-1)
 
     def check_if_prime(self, candidate, number_of_rounds):
         """Tämä funktio tarkistaa, onko annettu luku alkuluku.
