@@ -1,4 +1,5 @@
 import random
+ticket = random.SystemRandom()
 # from math import sqrt
 
 class KeyCreationMachine:
@@ -17,51 +18,68 @@ class KeyCreationMachine:
         Returns:
             int: satunnaisluku
         """
-        ticket = random.SystemRandom()
         return ticket.randrange(2**(length-1)+1, 2**length-1)
 
     def check_if_prime(self, candidate, number_of_rounds):
         """Tämä funktio tarkistaa, onko annettu luku alkuluku.
         Testattava muuttuja on nimeltään candidate,
         ja se voidaan kirjoittaa muodossa 2**r·d + 1.
+        Koska testi on probabilistinen, tehdää useita testikierroksia,
+        ja sitä varten annetaan testikierrosten määrä.
 
         Args:
-            candidate (int): Tarkistettava luku.
+            candidate (int): Testattava luku.
             number_of_rounds (int): Testikierrosten määrä
 
         Returns:
             boolean: True tai False sen mukaan onko testattava luku alkuluku vai ei.
         """
-        if candidate in (2,3):
+        if candidate <= 3:
             return True
         if candidate % 2 == 0:
             return False
-        even_number = candidate - 1
-        d_twos_multiplier = even_number / 2
-        r_twos_power = 1
-        while d_twos_multiplier % 2 == 0:
-            d_twos_multiplier = d_twos_multiplier / 2
+        d_even_number = candidate - 1
+        r_twos_power = 0
+        while d_even_number % 2 == 0:
+            d_even_number = d_even_number / 2
             r_twos_power += 1
-        for i in range(number_of_rounds):
-            i += 1
-            random_integer_a = random.randint(2, candidate-2)
-            x = random_integer_a % candidate
-            if d_twos_multiplier % 2 == 1:
-                x = x % candidate
-            else:
-                d_twos_multiplier = d_twos_multiplier/2
-                x = (x*x)%candidate
-            if x in (1, candidate-1):
-                return True
-            for j in range(r_twos_power-1):
-                x = x**2 % candidate
-                j += 1
-                if x == (candidate-1):
-                    return True
-            return False
+        d_even_number = int(d_even_number)
+        print("---")
+        print("cand: ", candidate)
+        print("even: ", d_even_number)
+        print("r: ", r_twos_power)
+        print("candidate = (2^r)·d + 1 =")
+        res = 2**r_twos_power *d_even_number+1
+        print(res)
+        print("---")
+        for _ in range(number_of_rounds):
+            random_integer_a = ticket.randrange(2, candidate-2)
+            if not self.one_test(candidate, random_integer_a, d_even_number, r_twos_power):
+                return False
         return True
-        # square_root_of_candidate = round(sqrt(candidate))
-        # x:n nimi pitää muuttaa kuvaavammaksi
+
+    def one_test(self, candidate, random_integer_a, d_even_number, r_twos_power):
+        """Tämä funktio tekee yhden probabilistisen Miller-Rabin-testin,
+        joka testaa onko annettu luku alkuluku. Testattava luku voidaan
+        kirjoittaa muodossa 2**r·d + 1.
+
+        Args:
+            candidate (int): testattava luku
+            random_integer_a (int): satunnaisluku
+            d_twos_multiplier (int): ylläolevan kaavan d
+            r_twos_power (int): ylläolevan kaavan r
+
+        Returns:
+            boolean: True tai False
+        """
+        witness = pow(random_integer_a, d_even_number, candidate)
+        if witness in (1, candidate-1):
+            return True
+        for _ in range(r_twos_power-1):
+            witness = pow(witness, 2, candidate)
+            if witness == (candidate-1):
+                return True
+        return False
 
     def generate_prime(self, length, number_of_rounds):
         """Tämä funktio luo alkuluvun.
@@ -71,7 +89,7 @@ class KeyCreationMachine:
             number_of_rounds (int): testauskierrosten määrä alkuluvuksi testaamista varten
 
         Returns:
-            _type_: alkuluku
+            int: alkuluku
         """
         while True:
             candidate = self.generate_random_bits(length)
