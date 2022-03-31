@@ -41,17 +41,9 @@ class KeyCreationMachine:
         d_even_number = candidate - 1
         r_twos_power = 0
         while d_even_number % 2 == 0:
-            d_even_number = d_even_number / 2
+            d_even_number >>= 1
             r_twos_power += 1
         d_even_number = int(d_even_number)
-        print("---")
-        print("cand: ", candidate)
-        print("even: ", d_even_number)
-        print("r: ", r_twos_power)
-        print("candidate = (2^r)·d + 1 =")
-        res = 2**r_twos_power *d_even_number+1
-        print(res)
-        print("---")
         for _ in range(number_of_rounds):
             random_integer_a = ticket.randrange(2, candidate-2)
             if not self.one_test(candidate, random_integer_a, d_even_number, r_twos_power):
