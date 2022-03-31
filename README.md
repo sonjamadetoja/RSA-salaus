@@ -8,3 +8,4 @@ Tämä ohjelma tuottaa salausavaimia ja käyttää annettuja avaimia viestin sal
 
 * [Määrittelydokumentti](https://github.com/sonjamadetoja/RSA-salaus/blob/master/dokumentaatio/maarittelydokumentti.md)
 * [Viikkoraportti 1](https://github.com/sonjamadetoja/RSA-salaus/blob/master/dokumentaatio/viikkoraportti1.md)
+* [Viikkoraportti 2](https://github.com/sonjamadetoja/RSA-salaus/blob/master/dokumentaatio/viikkoraportti2.md)
