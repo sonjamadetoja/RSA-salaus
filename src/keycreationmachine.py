@@ -43,14 +43,14 @@ class KeyCreationMachine:
         while d_even_number % 2 == 0:
             d_even_number >>= 1
             r_twos_power += 1
-        d_even_number = int(d_even_number)
+        d_twos_multiplier = int(d_even_number)
         for _ in range(number_of_rounds):
             random_integer_a = ticket.randrange(2, candidate-2)
-            if not self.one_test(candidate, random_integer_a, d_even_number, r_twos_power):
+            if not self.one_test(candidate, random_integer_a, d_twos_multiplier, r_twos_power):
                 return False
         return True
 
-    def one_test(self, candidate, random_integer_a, d_even_number, r_twos_power):
+    def one_test(self, candidate, random_integer_a, d_twos_multiplier, r_twos_power):
         """Tämä funktio tekee yhden probabilistisen Miller-Rabin-testin,
         joka testaa onko annettu luku alkuluku. Testattava luku voidaan
         kirjoittaa muodossa 2**r·d + 1.
@@ -64,7 +64,7 @@ class KeyCreationMachine:
         Returns:
             boolean: True tai False
         """
-        witness = pow(random_integer_a, d_even_number, candidate)
+        witness = pow(random_integer_a, d_twos_multiplier, candidate)
         if witness in (1, candidate-1):
             return True
         for _ in range(r_twos_power-1):
@@ -73,7 +73,7 @@ class KeyCreationMachine:
                 return True
         return False
 
-    def generate_prime(self, length, number_of_rounds):
+    def generate_prime(self, length, number_of_rounds=40):
         """Tämä funktio luo alkuluvun.
 
         Args:
