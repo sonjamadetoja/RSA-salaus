@@ -2,7 +2,7 @@
 
 ## Mitä olen tehnyt?
 
-Olen jatkanut ohjelman keskeisten toimintojen ohjelmoimista ja perehtynyt aihepiiriin. Olen perehtynyt lisää Miller-Rabin-menetelmään ja korjannut sen sisältävän funktion, eli alkulukutestauksen, toimivaksi. Lisäksi olen perehtynyt laajennettuu Eukleideen algoritmiin. Olen myös ohjelmoinut kaikki tarvittavat funktiot avainparin luomiseen. Lisäksi olen ohjelmoinut yksikkötestejä ja refaktoroinut koodia.
+Olen jatkanut ohjelman keskeisten toimintojen ohjelmoimista ja perehtynyt aihepiiriin. Olen perehtynyt lisää Miller-Rabin-menetelmään ja korjannut sen sisältävän funktion, eli alkulukutestauksen, toimivaksi. Lisäksi olen perehtynyt laajennettuun Eukleideen algoritmiin. Olen myös ohjelmoinut kaikki tarvittavat funktiot avainparin luomiseen. Lisäksi olen ohjelmoinut yksikkötestejä ja refaktoroinut koodia.
 
 Olen myös kirjoittanut alustavan testausdokumentin sekä viikkoraportin.
 
