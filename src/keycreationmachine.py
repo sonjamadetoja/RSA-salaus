@@ -130,7 +130,7 @@ class KeyCreationMachine:
         eksponentti ja salaisen avaimen eksponentti.
 
         Returns:
-            KeyPair: avainpari luoka KeyPair oliona
+            KeyPair: avainpari luokan KeyPair oliona
         """
         int_n, int_e, int_d = self.generate_key_parts()
         key_pair = KeyPair(int_n, int_e, int_d)
