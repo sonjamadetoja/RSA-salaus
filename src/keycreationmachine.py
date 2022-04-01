@@ -1,6 +1,8 @@
 import random
+from keypair import KeyPair
 ticket = random.SystemRandom()
-# from math import sqrt
+
+
 
 class KeyCreationMachine:
     """Tämä luokka sisältää funktiot, joita tarvitaan salausavainparin luomiseen.
@@ -89,8 +91,80 @@ class KeyCreationMachine:
             if result is True:
                 return candidate
 
-    # def generate_key(self):
-    #     rand_bits = self.generate_random_bits(1024)
-    #     result = self.miller_rabin_test(rand_bits, 100)
-    #     ...jotain...
-    #     return jotain
+    def generate_two_different_primes(self):
+        """Tämä funktio luo kaksi erilaista
+        alkulukua kutsumalla alkuluvun luovaa
+        funktiota kahdesti.
+
+        Returns:
+            tuple: monikko, joka sisältää kaksi erilaista alkulukua
+        """
+        while True:
+            prime_p = self.generate_prime(1024)
+            prime_q = self.generate_prime(1024)
+            if prime_p != prime_q:
+                return prime_p, prime_q
+
+    def generate_key_parts(self):
+        """Tämä funktio luo salausavainparin osat n, e ja d niin,
+        että julkisen avaimen muodostavat n ja e, ja salaisen avaimen
+        muodostavat n ja d.
+
+        Returns:
+            tuple: monikko, jonka ensimmäinen alkio on n, toinen e ja kolmas d
+        """
+        primes = self.generate_two_different_primes()
+        prime_p = primes[0]
+        prime_q = primes[1]
+        int_n = prime_p*prime_q
+        delta_p = prime_p-1
+        delta_q = prime_q-1
+        delta_n = self.calculate_lcm(delta_p, delta_q)
+        int_e = 65537
+        int_d = self.calculate_gcd_ext(int_e, delta_n)[1]
+        return int_n, int_e, int_d
+
+    def generate_key_pair(self):
+        """Tämä funktio muodostaa avainparin luokan KeyPair
+        avulla. Sen attribuutteja ovat modulus, julkisen avaimen
+        eksponentti ja salaisen avaimen eksponentti.
+
+        Returns:
+            KeyPair: avainpari luoka KeyPair oliona
+        """
+        int_n, int_e, int_d = self.generate_key_parts()
+        key_pair = KeyPair(int_n, int_e, int_d)
+        return key_pair
+
+    def calculate_gcd_ext(self, int_a, int_b):
+        """Tämä funktio laskee kahden luvun /a ja b) suurimman yhteisen tekijän (syt eli gcd),
+        sekä x:n ja y:n perustuen kaavaan ax + by = syt(a,b).
+        Funktio perustuu laajennettuun Eukleideen algoritmiin.
+
+        Args:
+            int_a (int): luku
+            int_b (int): luku
+
+        Returns:
+            tuple: monikko, jonka ensimmäinen alkio on syt, toinen x ja kolmas y
+        """
+        if int_a == 0:
+            return int_b, 0, 1
+        gcd, x_1, y_1 = self.calculate_gcd_ext(int_b%int_a, int_a)
+        int_x = y_1 - (int_b//int_a)*x_1
+        int_y = x_1
+        return gcd, int_x, int_y
+
+    def calculate_lcm(self, int_a, int_b):
+        """Tämä funktio laskee kahden luvun pienimmän yhteisen jaettavan
+        käyttäen hyväksi suurinta yhteistä jakajaa.
+
+        Args:
+            int_a (int): luku
+            int_b (int): luku
+
+        Returns:
+            int: luku, joka on pienin yhteinen jaettava
+        """
+        gcd = self.calculate_gcd_ext(int_a, int_b)[0]
+        return abs(int_a*int_b)//gcd
