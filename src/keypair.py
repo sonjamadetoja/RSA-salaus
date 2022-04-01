@@ -10,24 +10,28 @@ class KeyPair:
         """Tämä funktio palauttaa julkisen avaimen.
 
         Returns:
-            merkkijono: julkinen avain
+            tuple: monikko, jossa on julkisen avaimen osiot modulus ja eksponentti,
+            jotka ovat lukuja (int)
         """
-        public = str(self.__modulus)+str(self.__public_key_part)
+        public = self.__modulus, self.__public_key_part
         return public
 
     def get_private_key(self):
         """Tämä funktio palauttaa salaisen avaimen.
 
         Returns:
-            merkkijono: salainen avain
+            tuple: monikko, jossa on salaisen avaimen osiot modulus ja eksponentti,
+            jotka ovat lukuja (int)
         """
-        private = str(self.__modulus)+str(self.__private_key_part)
+        private = self.__modulus, self.__private_key_part
         return private
 
-    def get_parts(self):
+    def get_all_parts(self):
         """Tämä funktio palauttaa ne osa, joista avaimet muodostetaan.
 
         Returns:
-            tuple: avaimen osiot, jotka ovat lukuja (int)
+            tuple: monikko, jossa on kaikki avainparin osiot:
+            modulus, julkisen avaimen eksponentti ja salaisen avaimen eksponentti,
+            jotka ovat kaikki lukuja (int)
         """
         return self.__modulus, self.__public_key_part, self.__private_key_part
