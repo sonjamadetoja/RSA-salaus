@@ -40,7 +40,7 @@ class TestKeyCreationMachine(unittest.TestCase):
 
     def test_generate_key_parts(self):
         int_n, int_e, int_d = self.KCM.generate_key_parts()
-        modulo_value = 1**(int_e*int_d)%int_n
+        modulo_value = 1**int((int_e*int_d)%int_n)
 
         self.assertEqual(int_e, 65537)
         self.assertEqual(modulo_value, 1)
