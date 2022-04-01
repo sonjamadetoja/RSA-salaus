@@ -1,5 +1,6 @@
 import unittest
 from keycreationmachine import KeyCreationMachine
+from keypair import KeyPair
 
 class TestKeyCreationMachine(unittest.TestCase):
     def setUp(self):
@@ -44,3 +45,14 @@ class TestKeyCreationMachine(unittest.TestCase):
 
         self.assertEqual(int_e, 65537)
         self.assertEqual(modulo_value, 1)
+
+    def test_generate_key_pair(self):
+        test_key_pair = self.KCM.generate_key_pair()
+        int_n, int_e, int_d = test_key_pair.get_all_parts()
+        modulo_value = 1**int((int_e*int_d)%int_n)
+        test_type = type(test_key_pair)
+        desired_type = type(KeyPair(0,0,0))
+
+        self.assertEqual(int_e, 65537)
+        self.assertEqual(modulo_value, 1)
+        self.assertEqual(test_type, desired_type)
