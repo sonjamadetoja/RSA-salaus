@@ -22,6 +22,15 @@ class MessageProcessing:
         return message_as_bin
 
     def message_to_string(self, message_as_bin):
+        """Tämä funktio muuttaa binäärimuodossa olevan viestin
+        tekstimuotoiseksi.
+
+        Args:
+            message_as_bin (binääri): viesti binäärilukuna
+
+        Returns:
+            string: viesti merkkijonona luettavassa muodossa
+        """
         message_as_int = int(str(message_as_bin), 2)
         message_as_hex = hex(message_as_int).lstrip('0x')
         message_as_byte = bytes.fromhex(message_as_hex)
@@ -29,12 +38,32 @@ class MessageProcessing:
         return message_as_string
 
     def encrypt_message(self, message, public_key_part, modulus):
+        """Tämä funktio salaa viestin.
+
+        Args:
+            message (string): salattava viesti
+            public_key_part (int): julkisen avaimen eksponenttiosa
+            modulus (int): salausavaimen modulusosa
+
+        Returns:
+            int: salattu viesti
+        """
         message_as_bin = self.message_to_bin(message)
         message_as_bin = int(message_as_bin)
         encrypted_message = pow(message_as_bin, public_key_part, modulus)
         return encrypted_message
 
     def decrypt_message(self, encrypted_message, private_key_part, modulus):
+        """Tämä funktio purkaa salatun viestin.
+
+        Args:
+            encrypted_message (int): salattu viesti
+            private_key_part (int): yksityisen avaimen eksponenttiosa
+            modulus (int): salausavaimen modulusosa
+
+        Returns:
+            string: purettu viesti merkkijonona luettavassa muodossa
+        """
         message_as_bin = pow(encrypted_message, private_key_part, modulus)
         decrypted_message = self.message_to_string(message_as_bin)
         return decrypted_message
