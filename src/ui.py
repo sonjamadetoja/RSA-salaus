@@ -8,6 +8,7 @@ class UI:
         self.processing = MessageProcessing()
 
     def menu_view(self):
+        print("*********RSA-salausohjelma*********")
         while True:
             print("Valitse toiminto numerolla:")
             print("1 Luo salausavainpari")
@@ -23,6 +24,7 @@ class UI:
                 self.decrypt()
             elif choice == "4":
                 print("Ohjelma päättyy.")
+                print("***********************************")
                 break
             else:
                 print("Virheellinen valinta.")
