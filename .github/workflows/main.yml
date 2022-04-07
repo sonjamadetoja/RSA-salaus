@@ -27,5 +27,4 @@ jobs:
       - name: Coverage report to Codecov
         uses: codecov/codecov-action@v2
 	with:
-	  fetch-depth: ‘2’
-
+	  override: main
