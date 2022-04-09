@@ -44,11 +44,15 @@ class UI:
         modulus = int(input("Anna salausavaimen modulus-osa: "))
         public_part = int(input("Anna salausavaimen julkinen osa: "))
         encrypted_message = self.processing.encrypt_message(message, public_part, modulus)
+        print("Viesti salattuna:")
         print(encrypted_message)
+        print("-----")
 
     def decrypt(self):
         message = int(input("Anna salattu viesti: "))
         modulus = int(input("Anna salausavaimen modulus-osa: "))
         private_part = int(input("Anna salausavaimen yksityinen osa: "))
         decrypted_message = self.processing.decrypt_message(message, private_part, modulus)
+        print("Viesti purettuna:")
         print(decrypted_message)
+        print("-----")
