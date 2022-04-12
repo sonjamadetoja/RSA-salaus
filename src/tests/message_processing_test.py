@@ -20,7 +20,7 @@ class TestKeyCreationMachine(unittest.TestCase):
 
         self.assertEqual(mes_str, should_be)
 
-    def test_encrypt_and_decrypt_returns_original_message(self):
+    def test_encrypt_and_decrypt_returns_original_message_256_bits(self):
         original_message = """Se kysymyksen on pyyhkimaan se liikkeelle ja kirmaissut tyttarenne. Ja et omaa syva he jo joko. Se ja vieras se toiset hiukan he. Eri puhuu enhan suopi ensin terve nyt kun hokee jai. Minka me suusi te minun saali. Kullakin kaivanut punainen kuuluvat ja par"""
 
         enc_mes = self.MP.encrypt_message(
