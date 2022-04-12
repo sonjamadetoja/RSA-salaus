@@ -5,7 +5,7 @@ class MessageProcessing:
     def __init__(self):
         pass
 
-    def message_to_bin(self, message):
+    def message_to_int(self, message):
         """Tämä funktio muuttaa viestin binäärimuotoon.
 
         Args:
@@ -15,13 +15,10 @@ class MessageProcessing:
             string: viesti binäärimuodossa merkkijonona
         """
         message_as_byte = message.encode(encoding='utf_8')
-        message_as_hex = message_as_byte.hex()
-        message_as_int = int(message_as_hex, 16)
-        message_as_bin = bin(message_as_int)
-        message_as_bin = message_as_bin.lstrip('0b')
-        return message_as_bin
+        message_as_int = int.from_bytes(message_as_byte, "big")
+        return message_as_int
 
-    def message_to_string(self, message_as_bin):
+    def message_to_string(self, message_as_int):
         """Tämä funktio muuttaa binäärimuodossa olevan viestin
         tekstimuotoiseksi.
 
@@ -31,9 +28,9 @@ class MessageProcessing:
         Returns:
             string: viesti merkkijonona luettavassa muodossa
         """
-        message_as_int = int(str(message_as_bin), 2)
-        message_as_hex = hex(message_as_int).lstrip('0x')
-        message_as_byte = bytes.fromhex(message_as_hex)
+        length_in_bytes = (message_as_int.bit_length() + 7) // 8
+        message_as_byte = message_as_int.to_bytes(length_in_bytes, "big")
+        print(message_as_byte)
         message_as_string = message_as_byte.decode('utf_8')
         return message_as_string
 
@@ -48,9 +45,8 @@ class MessageProcessing:
         Returns:
             int: salattu viesti
         """
-        message_as_bin = self.message_to_bin(message)
-        message_as_bin = int(message_as_bin)
-        encrypted_message = pow(message_as_bin, public_key_part, modulus)
+        message_as_int = self.message_to_int(message)
+        encrypted_message = pow(message_as_int, public_key_part, modulus)
         return encrypted_message
 
     def decrypt_message(self, encrypted_message, private_key_part, modulus):
@@ -64,6 +60,6 @@ class MessageProcessing:
         Returns:
             string: purettu viesti merkkijonona luettavassa muodossa
         """
-        message_as_bin = pow(encrypted_message, private_key_part, modulus)
-        decrypted_message = self.message_to_string(message_as_bin)
+        message_as_int = pow(encrypted_message, private_key_part, modulus)
+        decrypted_message = self.message_to_string(message_as_int)
         return decrypted_message
