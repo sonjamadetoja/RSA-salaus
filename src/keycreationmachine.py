@@ -100,7 +100,7 @@ class KeyCreationMachine:
             tuple: monikko, joka sisältää kaksi erilaista alkulukua
         """
         while True:
-            prime_p = self.generate_prime(1024)
+            prime_p = self.generate_prime(1030)
             prime_q = self.generate_prime(1024)
             if prime_p != prime_q:
                 return prime_p, prime_q
