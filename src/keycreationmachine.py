@@ -26,7 +26,7 @@ class KeyCreationMachine:
         """Tämä funktio tarkistaa, onko annettu luku alkuluku.
         Testattava muuttuja on nimeltään candidate,
         ja se voidaan kirjoittaa muodossa 2**r·d + 1.
-        Koska testi on probabilistinen, tehdää useita testikierroksia,
+        Koska testi on probabilistinen, tehdään useita testikierroksia,
         ja sitä varten annetaan testikierrosten määrä.
 
         Args:
