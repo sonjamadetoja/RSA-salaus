@@ -6,6 +6,7 @@ class UI:
     def __init__(self):
         self.machine = KeyCreationMachine()
         self.processing = MessageProcessing()
+        self._newest_key = None
 
     def menu_view(self):
         print("*********RSA-salausohjelma*********")
@@ -14,7 +15,8 @@ class UI:
             print("1 Luo salausavainpari")
             print("2 Salaa viesti")
             print("3 Pura viestin salaus")
-            print("4 Lopeta")
+            print("4 Poista viimeksi luotu avain muistista")
+            print("5 Lopeta")
             choice = input("Valintani: ")
             if choice == "1":
                 self.generate()
@@ -23,6 +25,8 @@ class UI:
             elif choice == "3":
                 self.decrypt()
             elif choice == "4":
+                self._newest_key = None
+            elif choice == "5":
                 print("Ohjelma päättyy.")
                 print("***********************************")
                 break
@@ -35,6 +39,7 @@ class UI:
         modulus = parts[0]
         public_part = parts[1]
         private_part = parts[2]
+        self._newest_key = parts
         print("modulus: ", modulus)
         print("julkinen osa: ", public_part)
         print("yksityinen osa: ", private_part)
@@ -46,16 +51,28 @@ class UI:
                 break
             print("Viesti on liian pitkä. Salattavan viestin pituus voi olla korkeintaan 256 bittiä.")
         while True:
-            try:
-                modulus = int(input("Anna salausavaimen modulus-osa: "))
+            reply = "ei"
+            if self._newest_key != None:
+                reply = input("Käytä viimeksi luotua avainta (kyllä/ei): ")
+            if reply == "kyllä":
+                modulus = self._newest_key[0]
+                public_part = self._newest_key[1]
                 break
-            except ValueError:
-                print("Virheellinen syöte")
-        while True:
-            try:
-                public_part = int(input("Anna salausavaimen julkinen osa: "))
+            if reply == "ei":
+                while True:
+                    try:
+                        modulus = int(input("Anna salausavaimen modulus-osa: "))
+                        break
+                    except ValueError:
+                        print("Virheellinen syöte")
+                while True:
+                    try:
+                        public_part = int(input("Anna salausavaimen julkinen osa: "))
+                        break
+                    except ValueError:
+                        print("Virheellinen syöte")
                 break
-            except ValueError:
+            else:
                 print("Virheellinen syöte")
         encrypted_message = self.processing.encrypt_message(message, public_part, modulus)
         print("Viesti salattuna:")
@@ -70,16 +87,28 @@ class UI:
             except ValueError:
                 print("Virheellinen syöte")
         while True:
-            try:
-                modulus = int(input("Anna salausavaimen modulus-osa: "))
+            reply = "ei"
+            if self._newest_key != None:
+                reply = input("Käytä viimeksi luotua avainta (kyllä/ei): ")
+            if reply == "kyllä":
+                modulus = self._newest_key[0]
+                private_part = self._newest_key[2]
                 break
-            except ValueError:
-                print("Virheellinen syöte")
-        while True:
-            try:
-                private_part = int(input("Anna salausavaimen yksityinen osa: "))
+            if reply == "ei":
+                while True:
+                    try:
+                        modulus = int(input("Anna salausavaimen modulus-osa: "))
+                        break
+                    except ValueError:
+                        print("Virheellinen syöte")
+                while True:
+                    try:
+                        private_part = int(input("Anna salausavaimen yksityinen osa: "))
+                        break
+                    except ValueError:
+                        print("Virheellinen syöte")
                 break
-            except ValueError:
+            else:
                 print("Virheellinen syöte")
         decrypted_message = self.processing.decrypt_message(message, private_part, modulus)
         error_message = "Jotain meni pieleen. Salausavain tai viesti oli virheellinen."
