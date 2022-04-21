@@ -27,8 +27,8 @@ class TestKeyCreationMachine(unittest.TestCase):
 
         self.assertEqual(result, False)
 
-    def test_check_if_prime_less_than_three(self):
-        result = self.KCM.check_if_prime(1, 1)
+    def test_check_if_prime_very_small(self):
+        result = self.KCM.check_if_prime(2, 1)
 
         self.assertEqual(result, True)
 
