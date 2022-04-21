@@ -36,9 +36,9 @@ class KeyCreationMachine:
         Returns:
             boolean: True tai False sen mukaan onko testattava luku alkuluku vai ei.
         """
-        if candidate <= 3:
+        if candidate in (2, 3):
             return True
-        if candidate % 2 == 0:
+        if candidate == 1 or candidate % 2 == 0:
             return False
         d_even_number = candidate - 1
         r_twos_power = 0
