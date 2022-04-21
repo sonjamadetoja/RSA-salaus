@@ -27,7 +27,7 @@ Suorituskykytestausta aloitin kokeilemalla luoda 100 kertaa salausavainparin kä
 
 ## Miten testit voidaan toistaa?
 
-Testit voidaan toistaa terminaalissa komennolla 'pytest'. 
+Testit voidaan toistaa terminaalissa komennolla 'pytest'. Sitä ennen projekti täytyy alustaa komennolla 'poetry install',
 
 Testikattavuus voidaan hakea terminaalissa seuraavasti:
 1. Anna komento 'coverage run --branch -m pytest'
