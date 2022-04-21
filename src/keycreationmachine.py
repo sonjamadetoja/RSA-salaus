@@ -1,4 +1,5 @@
 import random
+import math
 from keypair import KeyPair
 ticket = random.SystemRandom()
 
@@ -36,10 +37,11 @@ class KeyCreationMachine:
         Returns:
             boolean: True tai False sen mukaan onko testattava luku alkuluku vai ei.
         """
-        if candidate in (2, 3):
-            return True
         if candidate == 1 or candidate % 2 == 0:
             return False
+        first_primes = self.sieve_of_eratosthenes(5000)
+        if candidate in first_primes:
+            return True
         d_even_number = candidate - 1
         r_twos_power = 0
         while d_even_number % 2 == 0:
@@ -51,6 +53,28 @@ class KeyCreationMachine:
             if not self.one_test(candidate, random_integer_a, d_twos_multiplier, r_twos_power):
                 return False
         return True
+
+    def sieve_of_eratosthenes(self, number):
+        """Tämä funktio toteuttaa Eratostheneen seulan, joka antaa kaikki alkuluvut, jotka ovat pienempiä,
+        kuin sille argumentiksi annettu luku (tässä number).
+
+        Args:
+            number (int): numero, jota pienemmät alkuluvut etsitään
+
+        Returns:
+            list: taulukko alkuluvuista
+        """
+        numbers = [True for i in range(2, number+1)]
+        square = round(math.sqrt(number))
+        for i in range(2, square):
+            if numbers[i] is True:
+                for j in range(pow(i,2), number, i):
+                    numbers[j] = False
+        primes = []
+        for i in range(2, len(numbers)):
+            if numbers[i] is True:
+                primes.append(i)
+        return primes
 
     def one_test(self, candidate, random_integer_a, d_twos_multiplier, r_twos_power):
         """Tämä funktio tekee yhden probabilistisen Miller-Rabin-testin,

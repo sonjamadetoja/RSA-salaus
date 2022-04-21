@@ -61,3 +61,8 @@ class TestKeyCreationMachine(unittest.TestCase):
         self.assertEqual(int_e, 65537)
         self.assertEqual(modulo_value, 1)
         self.assertEqual(test_type, desired_type)
+
+    def test_sieve_of_eratosthenes(self):
+        result = self.KCM.sieve_of_eratosthenes(50)
+
+        self.assertEqual(result, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47])
