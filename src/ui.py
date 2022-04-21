@@ -40,19 +40,50 @@ class UI:
         print("yksityinen osa: ", private_part)
 
     def encrypt(self):
-        message = input("Anna salattava viesti: ")
-        modulus = int(input("Anna salausavaimen modulus-osa: "))
-        public_part = int(input("Anna salausavaimen julkinen osa: "))
+        while True:
+            message = input("Anna salattava viesti: ")
+            if len(message)*8 <= 256:
+                break
+            print("Viesti on liian pitkä. Salattavan viestin pituus voi olla korkeintaan 256 bittiä.")
+        while True:
+            try:
+                modulus = int(input("Anna salausavaimen modulus-osa: "))
+                break
+            except ValueError:
+                print("Virheellinen syöte")
+        while True:
+            try:
+                public_part = int(input("Anna salausavaimen julkinen osa: "))
+                break
+            except ValueError:
+                print("Virheellinen syöte")
         encrypted_message = self.processing.encrypt_message(message, public_part, modulus)
         print("Viesti salattuna:")
         print(encrypted_message)
         print("-----")
 
     def decrypt(self):
-        message = int(input("Anna salattu viesti: "))
-        modulus = int(input("Anna salausavaimen modulus-osa: "))
-        private_part = int(input("Anna salausavaimen yksityinen osa: "))
+        while True:
+            try:
+                message = int(input("Anna salattu viesti: "))
+                break
+            except ValueError:
+                print("Virheellinen syöte")
+        while True:
+            try:
+                modulus = int(input("Anna salausavaimen modulus-osa: "))
+                break
+            except ValueError:
+                print("Virheellinen syöte")
+        while True:
+            try:
+                private_part = int(input("Anna salausavaimen yksityinen osa: "))
+                break
+            except ValueError:
+                print("Virheellinen syöte")
         decrypted_message = self.processing.decrypt_message(message, private_part, modulus)
-        print("Viesti purettuna:")
+        error_message = "Jotain meni pieleen. Salausavain tai viesti oli virheellinen."
+        if decrypted_message != error_message:
+            print("Viesti purettuna:")
         print(decrypted_message)
         print("-----")

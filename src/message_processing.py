@@ -30,8 +30,10 @@ class MessageProcessing:
         """
         length_in_bytes = (message_as_int.bit_length() + 7) // 8
         message_as_byte = message_as_int.to_bytes(length_in_bytes, "big")
-        print(message_as_byte)
-        message_as_string = message_as_byte.decode('utf_8')
+        try:
+            message_as_string = message_as_byte.decode('utf_8')
+        except UnicodeDecodeError:
+            return "Jotain meni pieleen. Salausavain tai viesti oli virheellinen."
         return message_as_string
 
     def encrypt_message(self, message, public_key_part, modulus):
