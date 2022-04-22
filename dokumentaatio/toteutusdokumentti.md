@@ -14,6 +14,12 @@ Eukleideen algoritmilla etsitään kahdelle luvulle suurin yhteinen tekijä. Kä
 
 Eukleideen algoritmissa muodostetaan kyseisille luvuille jakoyhtälö, ja sen jälkeen toinen luvuista jaetaan yhtälön jakojäännöksellä. Tätä toistetaan niin kauan, kunnes jakojäännös on nolla. Tällöin suurin yhteinen tekijä on viimenen jakojäännös, joka ei ole nolla. Algoritmin laajennetussa versiossa puolestaan prosessi toistetaan päinvastaiseen suuntaan, jotta saadaan selville, millä luvuilla alkuperäiset luvut tulee kertoa, jotta niiden summasta muodostuu suurin yhteinen tekijä.
 
+### Eratostheneen seula
+
+Eratostheneen seula on vanha algoritmi, jolla voi etsiä kaikki tiettyä lukua pienemmät alkuluvut. Se merkitsee yhdistetyksi luvuksi kaikki sellaiset luvut, jotka ovat jaollisia jollain aiemmalla luvulla. Luvut löydetään käymällä läpi kakkosesta ylöspäin kaikki sellaiset luvut, joita ei ole jo merkitty yhdistetyksi luvuksi. Lukuja käydään läpi ylärajan neliöjuureen saakka.
+
+Ohjelmassa käytän Eratostheneen seulaan generoimaan listan pieniä alkulukuja, ja käytän sitä apuna alkulukutarkistuksessa niin, että ensin tarkistan onko testattava luku jaollinen pienimmillä alkuluvuilla, ja vasta sen jälkeen luvulle tehdään tarvittaessa Miller-Rabinin testi. Tämä nopeuttaa testausta.
+
 ### Salausavainten luominen
 
 Salausavainten luominen alkaa kahden toisistaan poikkeavan alkuluvun luomisella. Sen jälkeen muodostetaan luku n (eli modulus) niiden tulona. Seuraavaksi valitaan eksponentti e, ja lasketaan e:n ja n:n avulla eksponentti d seuraavasti: kummastakin alkuluvusta vähennetään 1 ja etsitään niiden pienin yhteinen jakaja Eukleideen algoritmin avulla, ja kerrotaan se e:llä. E:n valinnasta: sen tulee olla suurempi kuin yksi ja pienempi kuin yhdellä vähennettyjen alkulukujen tulo, jonka kanssa sen tulee myös olla keskenään jaoton. Salaus on tehokkaampaa, jos sillä on lyhyt bittipituus ja pieni Hamming-paino, joten usein käytetään lukua 2^16 + 1 = 65537 - niin tässäkin ohjelmassa.
@@ -30,7 +36,7 @@ Viesti salataan korottamalla se potenssiin e ja ottamalla modulo n. Salattu vies
 
 Työhön ei ole toteutettu paddingiä, joka tarkoittaa ylimääräisten merkkien lisäämistä turvallisuuden takaamiseksi. Tämä on edellytys turvalliselle salaukselle.
 
-Ohjelma ei vielä toimi kovin pitkillä viesteillä.
+Ohjelma toimii vain viesteillä, jotka ovat korkeintaan 256 bittiä pitkiä.
 
 Testeissä voisi vielä suorittaa alkulukutestausta suuremmilla määrillä alkulukuja ja ei-alkulukuja.
 
@@ -40,6 +46,7 @@ Testeissä voisi vielä suorittaa alkulukutestausta suuremmilla määrillä alku
 [Miller-Rabin primality test](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
 [Euclidian algorithm](https://en.wikipedia.org/wiki/Euclidean_algorithm)
 [Extended Euclidian algorithm](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm)
+[Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
 [Modulaarinen aritmetiikka](https://fi.wikipedia.org/wiki/Modulaarinen_aritmetiikka)
 [Keskenään jaottomat luvut](https://fi.wikipedia.org/wiki/Kesken%C3%A4%C3%A4n_jaottomat_luvut)
 
