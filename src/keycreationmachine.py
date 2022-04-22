@@ -37,11 +37,14 @@ class KeyCreationMachine:
         Returns:
             boolean: True tai False sen mukaan onko testattava luku alkuluku vai ei.
         """
-        first_primes = self.sieve_of_eratosthenes(5000)
-        if candidate in first_primes:
-            return True
-        if candidate == 1 or candidate % 2 == 0:
+        if candidate == 1:
             return False
+        if candidate in (2,3):
+            return True
+        first_primes = self.sieve_of_eratosthenes(3500)
+        for divisor in first_primes:
+            if candidate % divisor == 0:
+                return False
         d_even_number = candidate - 1
         r_twos_power = 0
         while d_even_number % 2 == 0:
@@ -55,8 +58,8 @@ class KeyCreationMachine:
         return True
 
     def sieve_of_eratosthenes(self, number):
-        """Tämä funktio toteuttaa Eratostheneen seulan, joka antaa kaikki alkuluvut, jotka ovat pienempiä,
-        kuin sille argumentiksi annettu luku (tässä number).
+        """Tämä funktio toteuttaa Eratostheneen seulan, joka antaa kaikki alkuluvut,
+        jotka ovat pienempiä, kuin sille argumentiksi annettu luku (tässä number).
 
         Args:
             number (int): numero, jota pienemmät alkuluvut etsitään
