@@ -49,10 +49,11 @@ class UI:
             message = input("Anna salattava viesti: ")
             if len(message)*8 <= 256:
                 break
-            print("Viesti on liian pitkä. Salattavan viestin pituus voi olla korkeintaan 256 bittiä.")
+            print("""Viesti on liian pitkä. Salattavan viestin
+            pituus voi olla korkeintaan 256 bittiä.""")
         while True:
             reply = "ei"
-            if self._newest_key != None:
+            if self._newest_key is not None:
                 reply = input("Käytä viimeksi luotua avainta (kyllä/ei): ")
             if reply == "kyllä":
                 modulus = self._newest_key[0]
@@ -88,7 +89,7 @@ class UI:
                 print("Virheellinen syöte")
         while True:
             reply = "ei"
-            if self._newest_key != None:
+            if self._newest_key is not None:
                 reply = input("Käytä viimeksi luotua avainta (kyllä/ei): ")
             if reply == "kyllä":
                 modulus = self._newest_key[0]
