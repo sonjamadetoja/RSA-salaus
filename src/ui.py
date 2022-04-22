@@ -43,6 +43,29 @@ class UI:
         print("modulus: ", modulus)
         print("julkinen osa: ", public_part)
         print("yksityinen osa: ", private_part)
+        while True:
+            save_file = input("Haluatko tallentaa avainparin tiedostoon (kyllä/ei)? ")
+            if save_file == "kyllä":
+                data = f"""modulus: {modulus}
+julkinen osa: {public_part}
+yksityinen osa: {private_part}"""
+                try:
+                    self.save_to_file("RSA_avain.txt", data)
+                except FileExistsError:
+                    name_string = "RSA_avain"+str(modulus)[0:5]+".txt"
+                    self.save_to_file(name_string, data)
+                break
+            if save_file == "ei":
+                break
+            else:
+                print("Virheellinen syöte")
+
+    def save_to_file(self, name, data):
+        with open(name, "x") as file:
+            print("Tallennetaan...")
+            file.write(data)
+            print(name)
+            print("Valmis!")
 
     def encrypt(self):
         while True:
