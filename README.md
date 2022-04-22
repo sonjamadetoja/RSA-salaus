@@ -6,7 +6,7 @@ Tämä ohjelma tuottaa salausavaimia ja käyttää annettuja avaimia viestin sal
 
 ## Dokumentaatio
 
-* [Käyttäohje](https://github.com/sonjamadetoja/RSA-salaus/blob/main/dokumentaatio/kayttoohje.md)
+* [Käyttöohje](https://github.com/sonjamadetoja/RSA-salaus/blob/main/dokumentaatio/kayttoohje.md)
 * [Määrittelydokumentti](https://github.com/sonjamadetoja/RSA-salaus/blob/main/dokumentaatio/maarittelydokumentti.md)
 * [Testausdokumentti](https://github.com/sonjamadetoja/RSA-salaus/blob/main/dokumentaatio/testausdokumentti.md) (alustava)
 * [Toteutusdokumentti](https://github.com/sonjamadetoja/RSA-salaus/blob/main/dokumentaatio/toteutusdokumentti.md) (alustava)
