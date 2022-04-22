@@ -37,11 +37,11 @@ class KeyCreationMachine:
         Returns:
             boolean: True tai False sen mukaan onko testattava luku alkuluku vai ei.
         """
-        if candidate == 1 or candidate % 2 == 0:
-            return False
         first_primes = self.sieve_of_eratosthenes(5000)
         if candidate in first_primes:
             return True
+        if candidate == 1 or candidate % 2 == 0:
+            return False
         d_even_number = candidate - 1
         r_twos_power = 0
         while d_even_number % 2 == 0:
@@ -65,7 +65,7 @@ class KeyCreationMachine:
             list: lista alkuluvuista
         """
         numbers = [True for i in range(2, number+2)]
-        square_root = round(math.sqrt(number))
+        square_root = round(math.sqrt(number))+1
         for i in range(2, square_root):
             if numbers[i] is True:
                 for j in range(pow(i,2), number, i):
