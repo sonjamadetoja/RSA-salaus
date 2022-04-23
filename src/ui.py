@@ -70,7 +70,7 @@ yksityinen osa: {private_part}"""
     def encrypt(self):
         while True:
             message = input("Anna salattava viesti: ")
-            if len(message)*8 <= 256:
+            if len(message) <= 256:
                 break
             print("""Viesti on liian pitkä. Salattavan viestin
             pituus voi olla korkeintaan 256 bittiä.""")
