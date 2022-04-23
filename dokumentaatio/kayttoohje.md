@@ -31,7 +31,7 @@ Valitse päävalikossa numero '1'. Toiminto luo salausavainparin ja tulostaa sen
 
 Valitse päävalikossa numero '2'.
 
-Ensin ohjelma pyytää salattavaa viestiä. Viestin pituus voi olla korkeintaan 256 bittiä.
+Ensin ohjelma pyytää salattavaa viestiä. Viestin pituus voi olla korkeintaan 256 tavua.
 
 Jos olet luonut ohjelmalla salausavaimen, ohjelma kysyy haluatko käyttää sitä salaamiseen. Vastaa 'kyllä' tai 'ei'. Jos vastaat ei, tai jos et ole luonut avainta tällä käyttökerralla, ohjelma pyytää antamaan salausavaimen moduluksen ja julkisen osan. Sen jälkeen ohjelma tulostaa viestin salatussa muodossa.
 
