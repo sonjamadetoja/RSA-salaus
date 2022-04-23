@@ -39,9 +39,9 @@ class KeyCreationMachine:
         """
         if candidate == 1:
             return False
-        if candidate in (2,3):
-            return True
         first_primes = self.sieve_of_eratosthenes(3500)
+        if candidate in first_primes:
+            return True
         for divisor in first_primes:
             if candidate % divisor == 0:
                 return False
