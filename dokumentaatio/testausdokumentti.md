@@ -22,7 +22,7 @@ Lisäksi salauksen toiminnan testaamisessa käytettiin testiviestinä satunnaise
 
 ## Suorituskykytestaus
 
-Suorituskykytestausta aloitin kokeilemalla luoda 100 kertaa salausavainparin käyttäen 1024 bitin kokoisia alkulukuja. Keskiarvo alkulukuparin luomisen kestolle oli 3.297859284877777242e+00 eli noin 3,3 sekuntia ennen Eratostheneen seulan käyttöönottoa. Seulan käyttöönoton jälkeen sama keskiarvo oli 1.566399981975555411e+00 seli noin 1,5 sekuntia.
+Suorituskykytestausta aloitin kokeilemalla luoda 100 kertaa salausavainparin käyttäen 1024 bitin kokoisia alkulukuja. Keskiarvo alkulukuparin luomisen kestolle oli 3.297859284877777242e+00 eli noin 3,3 sekuntia ennen Eratostheneen seulan käyttöönottoa. Seulan käyttöönoton jälkeen sama keskiarvo oli 1.428238835334777912e+00 seli noin 1,4 sekuntia.
 
 
 ## Miten testit voidaan toistaa?
