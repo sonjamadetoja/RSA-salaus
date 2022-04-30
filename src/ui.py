@@ -83,18 +83,7 @@ yksityinen osa: {private_part}"""
                 public_part = self._newest_key[1]
                 break
             if reply == "ei":
-                while True:
-                    try:
-                        modulus = int(input("Anna salausavaimen modulus-osa: "))
-                        break
-                    except ValueError:
-                        print("Virheellinen syöte")
-                while True:
-                    try:
-                        public_part = int(input("Anna salausavaimen julkinen osa: "))
-                        break
-                    except ValueError:
-                        print("Virheellinen syöte")
+                modulus, public_part = self._ask_for_public_key()
                 break
             else:
                 print("Virheellinen syöte")
@@ -102,6 +91,21 @@ yksityinen osa: {private_part}"""
         print("Viesti salattuna:")
         print(encrypted_message)
         print("-----")
+
+    def _ask_for_public_key(self):
+        while True:
+            try:
+                modulus = int(input("Anna salausavaimen modulus-osa: "))
+                break
+            except ValueError:
+                print("Virheellinen syöte")
+        while True:
+            try:
+                public_part = int(input("Anna salausavaimen julkinen osa: "))
+                break
+            except ValueError:
+                print("Virheellinen syöte")
+        return modulus, public_part
 
     def decrypt(self):
         while True:
@@ -119,18 +123,7 @@ yksityinen osa: {private_part}"""
                 private_part = self._newest_key[2]
                 break
             if reply == "ei":
-                while True:
-                    try:
-                        modulus = int(input("Anna salausavaimen modulus-osa: "))
-                        break
-                    except ValueError:
-                        print("Virheellinen syöte")
-                while True:
-                    try:
-                        private_part = int(input("Anna salausavaimen yksityinen osa: "))
-                        break
-                    except ValueError:
-                        print("Virheellinen syöte")
+                modulus, private_part = self._ask_for_private_key()
                 break
             else:
                 print("Virheellinen syöte")
@@ -140,3 +133,18 @@ yksityinen osa: {private_part}"""
             print("Viesti purettuna:")
         print(decrypted_message)
         print("-----")
+
+    def _ask_for_private_key(self):
+        while True:
+            try:
+                modulus = int(input("Anna salausavaimen modulus-osa: "))
+                break
+            except ValueError:
+                print("Virheellinen syöte")
+        while True:
+            try:
+                private_part = int(input("Anna salausavaimen yksityinen osa: "))
+                break
+            except ValueError:
+                print("Virheellinen syöte")
+        return modulus, private_part
