@@ -29,9 +29,9 @@ with self.assertRaises(UnicodeDecodeError) as context:
 self.assertRaises(UnicodeDecodeError, self.MP.message_to_string, message_as_int)
 ```
 
-Olen kirjoittanut [toteutusdokumenttia](https://github.com/sonjamadetoja/RSA-salaus/blob/main/dokumentaatio/toteutusdokumentti.md). Onko se riittävä? Olen ilmoittanut tila- ja aikavaativuudet kunkin algoritmin kohdalla. Onko tämä sopiva ja riittävä tapa? 
+Olen kirjoittanut [toteutusdokumenttia](https://github.com/sonjamadetoja/RSA-salaus/blob/main/dokumentaatio/toteutusdokumentti.md). Onko se riittävä? Olen ilmoittanut tila- ja aikavaativuudet kunkin algoritmin kohdalla. Onko tämä sopiva ja riittävä tapa? Mitä tarkoittaa "Graafinen esitys esim. aikavaativuuksien toteutumisesta empiirisen testauksen perusteella"?
 
-Onko [testausdokumentti](https://github.com/sonjamadetoja/RSA-salaus/blob/main/dokumentaatio/testausdokumentti.md) riittävä?
+Onko [testausdokumentti](https://github.com/sonjamadetoja/RSA-salaus/blob/main/dokumentaatio/testausdokumentti.md) riittävä? Mitä tarkoittaa "Ohjelman toiminnan empiirisen testauksen tulosten esittäminen graafisessa muodossa."? Minusta tuossa ei ole mitään sellaista, josta olisi järkevää tehdä taulukko. Pitäisikö olla enemmän tilastoja?
 
 ## Mitä teen seuraavaksi?
 
