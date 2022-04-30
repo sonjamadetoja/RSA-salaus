@@ -9,16 +9,28 @@ Miller-Rabinin metodia käytetään testaamaan onko luku alkuluku. Tämän metod
 
 Miller-Rabinin testi perustuu havaintoon, että pariton luku voidaan kirjoittaa muodossa 2^s⋅d + 1, niin että s ja d ovat positiivisia kokonaislukuja ja d on pariton. Tällöin on olemassa todennäköinen alkuluku a, joka on suurempi kuin 0 ja pienempi kuin n, ja jolle pätee että kun se korotetaan potenssiin d, se on kongruentti 1:n kanssa modulo n, ja kun se korotetaan potenssiin 2^r⋅d, se on kongruentti -1:n kanssa modulo n. 
 
+#### Aika- ja tilavaativuudet
+
+Miller-Rabin testin aikavaativuus on O(k log^3 n), jossa n on testattava luku ja k kierrosten määrä, ja tilavaativuus on O(1).
+
 ### Eukleideen algoritmi
 Eukleideen algoritmilla etsitään kahdelle luvulle suurin yhteinen tekijä. Käytän sitä funktiossa calculate_gcd_ext, joka toimii rekursiivisesti.
 
 Eukleideen algoritmissa muodostetaan kyseisille luvuille jakoyhtälö, ja sen jälkeen toinen luvuista jaetaan yhtälön jakojäännöksellä. Tätä toistetaan niin kauan, kunnes jakojäännös on nolla. Tällöin suurin yhteinen tekijä on viimenen jakojäännös, joka ei ole nolla. Algoritmin laajennetussa versiossa puolestaan prosessi toistetaan päinvastaiseen suuntaan, jotta saadaan selville, millä luvuilla alkuperäiset luvut tulee kertoa, jotta niiden summasta muodostuu suurin yhteinen tekijä.
+
+#### Aika- ja tilavaativuudet
+
+Laajennetun Eukleideen algoritmin aikavaativuus on O(log n), eli se toimii logaritmisessa ajassa, ja tilavaativuus on O(1).
 
 ### Eratostheneen seula
 
 Eratostheneen seula on vanha algoritmi, jolla voi etsiä kaikki tiettyä lukua pienemmät alkuluvut. Se merkitsee yhdistetyksi luvuksi kaikki sellaiset luvut, jotka ovat jaollisia jollain aiemmalla luvulla. Luvut löydetään käymällä läpi kakkosesta ylöspäin kaikki sellaiset luvut, joita ei ole jo merkitty yhdistetyksi luvuksi. Lukuja käydään läpi ylärajan neliöjuureen saakka.
 
 Ohjelmassa käytän Eratostheneen seulaan generoimaan listan pieniä alkulukuja, ja käytän sitä apuna alkulukutarkistuksessa niin, että ensin tarkistan onko testattava luku jaollinen pienimmillä alkuluvuilla, ja vasta sen jälkeen luvulle tehdään tarvittaessa Miller-Rabinin testi. Tämä nopeuttaa testausta.
+
+#### Aika- ja tilavaativuudet
+
+Eratostheneen seulan aikavaativuus on O(n log log n) ja tilavaativuus O(n).
 
 ### Salausavainten luominen
 
@@ -30,23 +42,23 @@ Julkisen avaimen muodostavat e ja n, ja salaisen avaimen muodostavat d ja n.
 
 Viesti salataan korottamalla se potenssiin e ja ottamalla modulo n. Salattu viesti puretaan korottamalla se potenssiin d ja ottamalla modulo n.
 
-## Saavutetut aika- ja tilavaativuudet
-
 ## Työn mahdolliset puutteet ja parannusehdotukset
 
 Työhön ei ole toteutettu paddingiä, joka tarkoittaa ylimääräisten merkkien lisäämistä turvallisuuden takaamiseksi. Tämä on edellytys turvalliselle salaukselle.
 
 Ohjelma toimii vain viesteillä, jotka ovat korkeintaan 256 bittiä pitkiä.
 
-Testeissä voisi vielä suorittaa alkulukutestausta suuremmilla määrillä alkulukuja ja ei-alkulukuja.
+Tällä hetkellä luotavan salausavaimen pituus on kovakoodattu ohjelmaan, mutta sen voisi jättää myös käyttäjän määriteltäväksi.
+
+Ohjelma voisi myös ilmoittaa, jos salatessa tai purkaessa yrittää antaa virheellisen avaimen.
 
 ## Lähteet
-[RSA](https://fi.wikipedia.org/wiki/RSA)
-[RSA (cryptosystem)](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
-[Miller-Rabin primality test](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
-[Euclidian algorithm](https://en.wikipedia.org/wiki/Euclidean_algorithm)
-[Extended Euclidian algorithm](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm)
-[Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
-[Modulaarinen aritmetiikka](https://fi.wikipedia.org/wiki/Modulaarinen_aritmetiikka)
-[Keskenään jaottomat luvut](https://fi.wikipedia.org/wiki/Kesken%C3%A4%C3%A4n_jaottomat_luvut)
+* [RSA](https://fi.wikipedia.org/wiki/RSA)
+* [RSA (cryptosystem)](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
+* [Miller-Rabin primality test](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
+* [Euclidian algorithm](https://en.wikipedia.org/wiki/Euclidean_algorithm)
+* [Extended Euclidian algorithm](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm)
+* [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
+* [Modulaarinen aritmetiikka](https://fi.wikipedia.org/wiki/Modulaarinen_aritmetiikka)
+* [Keskenään jaottomat luvut](https://fi.wikipedia.org/wiki/Kesken%C3%A4%C3%A4n_jaottomat_luvut)
 
