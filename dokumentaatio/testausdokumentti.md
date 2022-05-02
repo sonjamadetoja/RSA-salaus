@@ -1,4 +1,4 @@
-# Testausdokumentti (alustava versio)
+# Testausdokumentti
 
 ## Yksikkötestauksen kattavuusraportti
 

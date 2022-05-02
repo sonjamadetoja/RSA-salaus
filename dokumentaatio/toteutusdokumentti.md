@@ -1,4 +1,4 @@
-# Toteutusdokumentti (alustava versio)
+# Toteutusdokumentti
 
 ## Ohjelman yleisrakenne
 
